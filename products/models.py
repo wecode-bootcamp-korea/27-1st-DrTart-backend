@@ -6,19 +6,19 @@ class Category(models.Model):
     name   = models.CharField(max_length=50)
 
 class Product(models.Model):
-    korean_name  = models.CharField(max_length=20)
-    english_name = models.CharField(max_length=20)
-    image        = models.URLField(max_length=200)
-    price        = models.DecimalField(max_digits=10, decimal_places=2)
-    created_at   = models.DateTimeField(auto_now_add = True)
-    updated_at   = models.DateTimeField(auto_now = True)
-    vegan_or_not = models.BooleanField
-    sugar_level  = models.IntegerField
-    category     = models.ForeignKey(Category, on_delete=models.CASCADE)
-    description  = models.CharField(max_length=1000)
+    korean_name     = models.CharField(max_length=20)
+    english_name    = models.CharField(max_length=20)
+    thumbnail_image = models.URLField(max_length=200)
+    price           = models.DecimalField(max_digits=10, decimal_places=2)
+    created_at      = models.DateTimeField(auto_now_add = True)
+    updated_at      = models.DateTimeField(auto_now = True)
+    vegan_or_not    = models.BooleanField
+    sugar_level     = models.IntegerField
+    category        = models.ForeignKey(Category, on_delete=models.CASCADE)
+    description     = models.CharField(max_length=1000)
     
 class Image(models.Model):
-    url       = models.URLField(max_length=200)
+    url       = models.URLField(max_length=300)
     product   = models.ForeignKey(Product, on_delete=models.CASCADE)
     
 class Review(models.Model):
