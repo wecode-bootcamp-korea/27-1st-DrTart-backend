@@ -6,6 +6,8 @@ from users.models    import User
 from products.models import Product
 
 class Cart(models.Model):    
+    product      = models.ForeignKey(Product, on_delete=models.CASCADE)
+    user         = models.ForeignKey(User, on_delete=models.CASCADE)    
     quantity   = models.IntegerField(default=0)
     price      = models.IntegerField()
 
@@ -13,11 +15,11 @@ class Cart(models.Model):
         db_table = 'carts'
 
 class Order(models.Model):
+    product      = models.ForeignKey(Product, on_delete=models.CASCADE)
+    user         = models.ForeignKey(User, on_delete=models.CASCADE)
     quantity     = models.IntegerField(default=0)
     created_at   = models.DateTimeField(auto_now_add=True)
     address      = models.CharField(max_length=100)
-    product      = models.ForeignKey(Product, on_delete=models.CASCADE)
-    user         = models.ForeignKey(User, on_delete=models.CASCADE)
 
     class Meta:
         db_table = 'orders'
@@ -30,7 +32,7 @@ class Orderstatus(models.Model):
         db_table = 'orderstatus'
 
 class Orderlist(models.Model):
-    order = models.ForeignKey('Order', on_delete=models.CASCADE)
+    order = models.ForeignKey(Order, on_delete=models.CASCADE)
 
     class Meta:
         db_table = 'orderlists'
