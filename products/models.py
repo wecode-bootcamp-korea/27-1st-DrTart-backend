@@ -4,6 +4,9 @@ from users.models  import User
 
 class Category(models.Model):
     name = models.CharField(max_length=50)
+    
+    class Meta:
+        db_table='category'
 
 class Product(models.Model):
     korean_name         = models.CharField(max_length=20)
