@@ -31,11 +31,12 @@ class Image(models.Model):
         db_table='images'
     
 class Review(models.Model):
-    user        = models.ForeignKey(User, on_delete=models.CASCADE)
-    product     = models.ForeignKey(Product, on_delete=models.CASCADE)
-    content     = models.CharField(max_length=200, null=True)
-    created_at  = models.DateTimeField(auto_now_add=True, null=True)
-    updated_at  = models.DateTimeField(auto_now=True, null=True)
+    user             = models.ForeignKey(User, on_delete=models.CASCADE)
+    product          = models.ForeignKey(Product, on_delete=models.CASCADE)
+    content          = models.CharField(max_length=200, null=True)
+    review_image_url = models.URLField(max_length=300, null=True)
+    created_at       = models.DateTimeField(auto_now_add=True, null=True)
+    updated_at       = models.DateTimeField(auto_now=True, null=True)
     
     class Meta:
         db_table='reviews'

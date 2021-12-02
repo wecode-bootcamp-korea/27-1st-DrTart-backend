@@ -1,0 +1,6 @@
+korean_name,english_name,image,price,vegan_or_not,sugar_level,description,category
+당근케이크,carrot cake,https://pixabay.com/get/gf740fe31fe1eee20f679fc31cacc1d29385edf12e431b4f5321556db068ae54a0865d000a5076dc98b16b213f60ed1fc.jpg,7000,True,5,,cake
+딸기케이크,strawberry cake,https://pixabay.com/get/g9107ddd5d067a7c77dad33fb27349d0b5046ab166bf64243357bb436707bac1af31d325116e86fc193eab9543d5f1110acf45546fa54ff82d10b37f95977b37c_1920.jpg,6500,False,4,,cake
+치즈케이크,earlgrey cake,https://pixabay.com/photos/cheese-cake-strawberries-dessert-6263345/,7000,True,3,,cake
+에그타르트,egg tart,https://pixabay.com/get/g3f0b04163e73df082bd8d203d1433f769379d7529bfc72d9da360bee3137caddb503007c9b13d846e560a339dd8a0823fbe2a995e95d93a4258563e7154ebdbb_1920.jpg,5000,False,2,,tart
+딸기타르트,strawberry tart,https://pixabay.com/get/gf03c9e412f60a40c04fa67c330a553d8912cffe062e26c87f75a9035550dc4f31e0797e78153af34bb35311e1ade536d72c38945820541d8f932dad85d9072a7_1920.jpg,5500,True,3,,tart
