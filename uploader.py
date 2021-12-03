@@ -45,9 +45,9 @@ with open(CSV_PATH_PRODUCTS) as in_file:
 				name = row[7]
 		)
             
-CSV_PATH_PRODUCTS = "./csv/images.csv"
+CSV_PATH_IMAGES = "./csv/images.csv"
 
-with open(CSV_PATH_PRODUCTS) as in_file:
+with open(CSV_PATH_IMAGES) as in_file:
     data_reader = csv.reader(in_file)
     next(data_reader, None)
     for row in data_reader:
@@ -56,9 +56,9 @@ with open(CSV_PATH_PRODUCTS) as in_file:
             product = Product.objects.get(korean_name=row[1])
         )
         
-CSV_PATH_PRODUCTS = "./csv/orders.csv"
+CSV_PATH_ORDERS = "./csv/orders.csv"
  
-with open(CSV_PATH_PRODUCTS) as in_file:
+with open(CSV_PATH_ORDERS) as in_file:
     data_reader = csv.reader(in_file)
     next(data_reader, None)
     for row in data_reader:
@@ -66,7 +66,7 @@ with open(CSV_PATH_PRODUCTS) as in_file:
             status = row[1],
         )  
         
-with open(CSV_PATH_PRODUCTS) as in_file:
+with open(CSV_PATH_ORDERS) as in_file:
     data_reader = csv.reader(in_file)
     next(data_reader, None)
     for row in data_reader:
@@ -76,9 +76,9 @@ with open(CSV_PATH_PRODUCTS) as in_file:
             user = User.objects.get(name=row[2])
         )        
         
-CSV_PATH_PRODUCTS = "./csv/order_items.csv"
+CSV_PATH_ORDERS = "./csv/order_items.csv"
 
-with open(CSV_PATH_PRODUCTS) as in_file:
+with open(CSV_PATH_ORDERS) as in_file:
     data_reader = csv.reader(in_file)
     next(data_reader, None)
     for row in data_reader:
@@ -106,7 +106,7 @@ with open(CSV_PATH_PRODUCTS) as in_file:
 			category  = Category.objects.get(name = row[7])
 		)
 
-CSV_PATH_PRODUCTS = "./csv/reviews.csv"
+CSV_PATH_REVIEWS = "./csv/reviews.csv"
 
 with open(CSV_PATH_PRODUCTS) as in_file:
     data_reader = csv.reader(in_file)
@@ -119,9 +119,9 @@ with open(CSV_PATH_PRODUCTS) as in_file:
             review_image_url = row[3]
         )
   
-CSV_PATH_PRODUCTS = "./csv/review_comments.csv"
+CSV_PATH_REVIEW_COMMENTS = "./csv/review_comments.csv"
 
-with open(CSV_PATH_PRODUCTS) as in_file:
+with open(CSV_PATH_REVIEW_COMMENTS) as in_file:
     data_reader = csv.reader(in_file)
     next(data_reader, None)
     for row in data_reader:
