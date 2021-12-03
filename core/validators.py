@@ -9,7 +9,7 @@ def is_blank(email, password):
         raise KeyError('PASSWORD_IS_NULL')
 
 def email_validate(email):
-    REGEXR_EMAIL = '[a-zA-Z0-9]+\.?\w*@\w+[.]?\w*[.]+\w{2,3}'
+    REGEXR_EMAIL = '[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$'
     if not re.match(REGEXR_EMAIL, email):
         raise ValidationError('INVALID_KEY')
 
