@@ -44,7 +44,7 @@ class SigninView(View):
             user = User.objects.filter(email = data['email'])
 
             if not bcrypt.checkpw(data['password'].encode('utf-8'), user.password.encode('utf-8')):
-                raise ValidationError('INVALID_USER')
+                return ValidationError('INVALID_USER')
 
             token=jwt.encode({'user':'user.id'},SECRET_KEY,algorithm=ALGORITHM)
 
