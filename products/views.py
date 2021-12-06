@@ -1,16 +1,16 @@
-from django.http import JsonResponse
-from django.views import View
+from django.http      import JsonResponse
+from django.views     import View
 from django.db.models import Sum
 
-from products.models import Product
+from products.models  import Product
 
 class ProductView(View):
     def get(self, request):
         try:
             product_list = []
-            main = request.GET.get('main', None)
-            all = request.GET.get('all', None)
-            menu = request.GET.get('menu', None)
+            main     = request.GET.get('main', None)
+            all      = request.GET.get('all', None)
+            menu     = request.GET.get('menu', None)
             category = request.GET.get('category', None)
             products=[]
             if main:
