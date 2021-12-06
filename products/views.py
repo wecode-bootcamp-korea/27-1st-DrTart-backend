@@ -2,7 +2,7 @@ from django.http import JsonResponse
 from django.views import View
 from django.db.models import Sum
 
-from products.models import Product
+from products.models import Product,Menu
 
 class ProductMainView(View):
     def get(self, request):
