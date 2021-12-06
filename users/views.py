@@ -12,8 +12,7 @@ class SignupView(View):
     def post(self, request):
         try:
             data = json.loads(request.body)
-
-            is_blank(data.get('email'), data.get('password'))
+            
             email_validate(data['email'])
             password_validate(data['password'])
 
