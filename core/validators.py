@@ -1,6 +1,7 @@
 import re
 
 from django.core.exceptions import ValidationError
+from django.core.validators import EmailValidator
 
 def is_blank(email, password):
     if email is None:
@@ -9,11 +10,11 @@ def is_blank(email, password):
         raise KeyError('PASSWORD_IS_NULL')
 
 def email_validate(email):
-    regexr_email = '[a-zA-Z0-9]+\.?\w*@\w+[.]?\w*[.]+\w{2,3}'
-    if not re.match(regexr_email, email):
+    REGEXR_EMAIL = '[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$'
+    if not re.match(REGEXR_EMAIL, email):
         raise ValidationError('INVALID_KEY')
 
 def password_validate(password):
-    regexr_password = '(?=.*[A-Za-z])(?=.*\d)(?=.*[~!@#$^&*()+|=])[A-Za-z\d~!@#$%^&*()+|=]{8,}'
-    if not re.match(regexr_password,password):
+    REGEXR_PASSWORD = '(?=.*[A-Za-z])(?=.*\d)(?=.*[~!@#$^&*()+|=])[A-Za-z\d~!@#$%^&*()+|=]{8,}'
+    if not re.match(REGEXR_PASSWORD,password):
         raise ValidationError('INVALID_KEY')

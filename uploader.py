@@ -9,19 +9,19 @@ from orders.models     import Cart, OrderItem, Order, OrderStatus
 from products.models   import Product, Category, Image, ReviewComment, Review
 from users.models      import User
 
-CSV_PATH_USERS = './csv/users.csv'
+# CSV_PATH_USERS = './csv/users.csv'
 
-with open(CSV_PATH_USERS) as in_file:
-    data_reader = csv.reader(in_file)
-    next(data_reader, None)
-    for row in data_reader:
-        User.objects.create(
-            name = row[0], 
-            email = row[1], 
-            password = row[2], 
-            address = row[3],
-            vegan_or_not = row[4]
-            )
+# with open(CSV_PATH_USERS) as in_file:
+#     data_reader = csv.reader(in_file)
+#     next(data_reader, None)
+#     for row in data_reader:
+#         User.objects.create(
+#             name = row[0], 
+#             email = row[1], 
+#             password = row[2], 
+#             address = row[3],
+#             vegan_or_not = row[4]
+#             )
 
 CSV_PATH_PRODUCTS = "./csv/carts.csv"
 

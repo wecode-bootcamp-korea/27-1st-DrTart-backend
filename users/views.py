@@ -20,7 +20,7 @@ class SignupView(View):
             if User.objects.filter(email = data['email']).exists():
                 raise ValidationError('DUPLICATED_EMAIL')
 
-            hashed_password = bcrypt.hashpw(data['password'].encode('utf-8'), bcrypt.gensalt()).decode()
+            hashed_password = bcrypt.hashpw(data['password'].encode('utf-8'), bcrypt.gensalt()).decode('utf-8')
 
             User.objects.create(
                 name         = data['name'],
@@ -41,16 +41,16 @@ class SigninView(View):
     def post(self, request):
         try:
             data = json.loads(request.body)
-            user = User.objects.filter(email = data['email'])
-
+            user = User.objects.get(email = data['email'])
+            
             if not bcrypt.checkpw(data['password'].encode('utf-8'), user.password.encode('utf-8')):
                 raise ValidationError('INVALID_USER')
 
-            token=jwt.encode({'user':'user.id'},SECRET_KEY,algorithm=ALGORITHM)
+            token=jwt.encode({'user' : 'user.id'}, SECRET_KEY, algorithm=ALGORITHM)
 
             return JsonResponse({
-                'message':'SUCCESS',
-                'access_token':token
+                'message'     : 'SUCCESS',
+                'access_token' : token
             },status=200)
             
         except User.DoesNotExist:
