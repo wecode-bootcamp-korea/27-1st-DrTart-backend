@@ -6,6 +6,7 @@ from django.core.exceptions import ValidationError
 
 from .models                import User
 from core.validators        import email_validate, password_validate
+from my_settings            import SECRET_KEY,ALGORITHM
 
 
 class SignupView(View):
