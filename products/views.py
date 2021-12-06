@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 from django.http import JsonResponse
 from django.views import View
 from django.db.models import Sum
@@ -136,5 +135,3 @@ class ProductDetailView(View):
                 
         except Product.DoesNotExist:
             return JsonResponse({'message':'NOT_FOUND'}, status=401)
-=======
->>>>>>> f6d547b8949eb4961293337416e21dbc648b5f42
