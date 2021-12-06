@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 """dr_tart URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
@@ -20,10 +19,4 @@ from django.urls import path, include
 urlpatterns = [
     path('products', include('products.urls')),
 ]
-=======
-from django.urls import path , include
 
-urlpatterns = [
-    path('/users', include('users.urls'))
-]
->>>>>>> f6d547b8949eb4961293337416e21dbc648b5f42
