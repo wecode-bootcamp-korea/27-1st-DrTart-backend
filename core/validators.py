@@ -1,7 +1,6 @@
 import re
 
 from django.core.exceptions import ValidationError
-from django.core.validators import EmailValidator
 
 def email_validate(email):
     REGEXR_EMAIL = '[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$'

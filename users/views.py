@@ -5,8 +5,8 @@ from django.http            import JsonResponse
 from django.core.exceptions import ValidationError
 
 from .models                import User
-from core.validators        import is_blank, email_validate, password_validate
-from my_settings            import SECRET_KEY,ALGORITHM
+from core.validators        import email_validate, password_validate
+
 
 class SignupView(View):
     def post(self, request):

@@ -23,9 +23,6 @@ def authorization(func):
         except jwt.exceptions.DecodeError:
             return JsonResponse({'MESSAGE': 'INVALID_TOKEN'}, status=401)
 
-        except KeyError:
-            return JsonResponse({'MESSAGE': 'KER_ERROR'}, status=400)
-
         except User.DoesNotExist:
             return JsonResponse({'MESSAGE': 'INVALID_USER'}, status=401)
 
