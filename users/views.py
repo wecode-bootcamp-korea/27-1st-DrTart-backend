@@ -17,7 +17,7 @@ class SignupView(View):
             password_validate(data['password'])
 
             if User.objects.filter(email = data['email']).exists():
-                raise ValidationError('DUPLICATED_EMAIL')
+                return ValidationError('DUPLICATED_EMAIL')
 
             hashed_password = bcrypt.hashpw(data['password'].encode('utf-8'), bcrypt.gensalt()).decode('utf-8')
 
@@ -28,12 +28,12 @@ class SignupView(View):
                 address      = data['address'],
                 vegan_or_not = data['vegan_or_not']
             )
-            return JsonResponse({'MESSAGE':'SUCCESS'},status=201)
+            return JsonResponse({'message':'SUCCESS'},status=201)
 
         except ValidationError as e:
-            return JsonResponse({'MESSAGE': e.message},status=400)
+            return JsonResponse({'message': e.message},status=400)
 
         except KeyError:
-            return JsonResponse({'MESSAGE' : 'KEY_ERROR'}, status=400)
+            return JsonResponse({'message' : 'KEY_ERROR'}, status=400)
 
 
