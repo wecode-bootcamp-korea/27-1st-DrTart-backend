@@ -40,7 +40,7 @@ class CartView(View):
     def get(self, request):
 
         user  = request.user
-        carts = Cart.objects.select_related('product__korean_name','product__price','product__thumbnail_image_url').filter(user=user)
+        carts = Cart.objects.select_related('product').filter(user=user)
         if not Cart.objects.filter(user=user).exists():
             return JsonResponse({"message" : "CART_NOT_EXIST"}, status=400)
         
@@ -50,34 +50,10 @@ class CartView(View):
             'price'               : cart.product.price,
             'thumbnail_image_url' : cart.product.thumbnail_image_url,
             'quantity'            : cart.quantity
-        } for cart in carts]
+        } for cart in carts ]
 
         return JsonResponse({"cart_info" : result}, status=200)
 
-    @authorization
-    def patch(self, request):
-        try:
-            data     = json.loads(request.body)
-            user     = request.user
-            cart_id  = data['cart_id']
-            quantity = data['quantity']
-            
-            if not Cart.objects.filter(id=cart_id, user=user).exists():
-                return JsonResponse({"message" : "CART_NOT_EXIST"}, status=400)
-
-            if quantity <= 0:
-                return JsonResponse({"message" : "QUANTITY_ERROR"}, status=400)
-
-            cart = Cart.objects.get(id = cart_id, user = user)
-            cart.product_id = data['product_id']
-
-            cart.quantity = quantity
-            cart.save()
-            return JsonResponse({"message" : "SUCCESS"}, status=201)
-
-        except KeyError:
-            return JsonResponse({"message" : "KEY_ERROR"}, status=400)
-    
     @authorization
     def delete(self, request, cart_id):
           
@@ -89,5 +65,5 @@ class CartView(View):
         
         cart.delete()
 
-        return JsonResponse({"message" : "DELETE_SUCCESS"}, status=201)
+        return JsonResponse({"message" : "DELETE_SUCCESS"}, status=204)
 
