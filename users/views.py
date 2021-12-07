@@ -53,34 +53,6 @@ class SigninView(View):
                 'access_token':token
             },status=200)
                 
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-            
-            
         except User.DoesNotExist:
             return JsonResponse({'message':'INVALID_USER'}, status=401)
         

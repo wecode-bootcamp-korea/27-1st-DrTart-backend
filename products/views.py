@@ -42,8 +42,8 @@ class ProductView(View):
                             'category' : product.category.name
                         },
                     'created_at'          : product.created_at,
-                    'like'                : 'TEMPORARY_LIKES',
-                    'order_quantity'      : product.order.quantity,
+                    'like'                : product.orderitem_set.all()[0].quantity,
+                    'order_quantity'      : product.orderitem_set.all()[0].quantity,
                     
                 } for product in products]
                     
