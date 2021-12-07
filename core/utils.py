@@ -15,7 +15,7 @@ def authorization(func):
 
             payload      = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
 
-            user         = User.objects.get(id=payload['user'])
+            user         = User.objects.get(id=payload['user_id'])
             request.user = user
 
             return func(self, request, *args, **kwargs)
