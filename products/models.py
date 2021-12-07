@@ -6,14 +6,14 @@ class Menu(models.Model):
     name = models.CharField(max_length=20)
     
     class Meta:
-        db_table='menu'
+        db_table='menus'
 
 class Category(models.Model):
     name = models.CharField(max_length=50)
     menu = models.ForeignKey(Menu, on_delete=models.CASCADE)
     
     class Meta:
-        db_table='category'
+        db_table='categories'
 
 class Product(models.Model):
     korean_name         = models.CharField(max_length=20)

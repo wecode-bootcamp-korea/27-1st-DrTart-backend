@@ -38,7 +38,7 @@ class ProductView(View):
                     'thumbnail_image_url' : product.thumbnail_image_url,
                     'vegan_or_not'        : product.vegan_or_not,
                     'category'            :{
-                            'name'     : product.category.menu.name,
+                            'name'     : product.categories.menu.name,
                             'category' : product.category.name
                         },
                     'created_at'          : product.created_at
