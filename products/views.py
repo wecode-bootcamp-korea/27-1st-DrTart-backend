@@ -1,30 +1,38 @@
 from django.http      import JsonResponse
 from django.views     import View
-from django.db.models import Sum
+from django.db.models import Sum, Q
 
 from products.models  import Product
 
 class ProductView(View):
     def get(self, request):
         try:
-            product_list = []
-            main     = request.GET.get('main', None)
-            all      = request.GET.get('all', None)
             menu     = request.GET.get('menu', None)
             category = request.GET.get('category', None)
-            products=[]
-            if main:
-                products = Product.objects.all().annotate(sum=Sum('orderitem__quantity')).order_by('-sum')[:5]
-            if all:
-                products = Product.objects.all().annotate(sum=Sum('orderitem__quantity')).order_by('-sum')
-            if menu:
-                products = Product.objects.select_related('category__menu').filter(category__menu__name=menu).annotate(sum=Sum('orderitem__quantity')).order_by('-sum')
-            if category:
-                products = Product.objects.select_related('category').filter(category__name=category).annotate(sum=Sum('orderitem__quantity')).order_by('-sum')
+            limit    = int(request.GET.get('limit', 100))
+            offset   = int(request.GET.get('offset', 0))
             
-            for product in products:    
-                product_list.append({
-                    'id': product.id,
+            q = Q()
+            category_mapping = None
+            mapping = {
+                "menu"     : "category__menu",
+                "category" : "category"
+            }
+            
+            if menu:
+                q &= Q(category__menu__name=menu)
+                category_mapping = mapping["menu"]
+                        
+            if category:
+                q &= Q(category__name=category) 
+                category_mapping = mapping["category"]
+
+            products = Product.objects.select_related(category_mapping)\
+                    .annotate(sum=Sum('orderitem__quantity'))\
+                    .filter(q).order_by('-sum')[offset:limit+offset]
+                    
+            product_list = [
+                    {'id'                 : product.id,
                     'korean_name'         : product.korean_name,
                     'price'               : product.price,
                     'thumbnail_image_url' : product.thumbnail_image_url,
@@ -34,25 +42,25 @@ class ProductView(View):
                             'category' : product.category.name
                         },
                     'created_at'          : product.created_at
-                })
+                } for product in products]
                     
             return JsonResponse({'product_list': product_list}, status = 200)
             
         except Product.DoesNotExist:
-            return JsonResponse({'message':'NOT_FOUND'}, status=401)
+            return JsonResponse({'message':'NOT_FOUND'}, status=404)
         
         except AttributeError:
             return JsonResponse({'message' : 'AttributeError'}, status=400)
         
-        except TypeError:
-            return JsonResponse({'message' : 'TypeError'}, status=400)
+        # except TypeError:
+        #     return JsonResponse({'message' : 'TypeError'}, status=400)
         
         
 class ProductDetailView(View):
-    def get(self,request, product_id):
+    def get(self, request, product_id):
         try:
             product = Product.objects.get(id=product_id)
-            images = product.image_set.filter(product__id=product_id)
+            images = product.image_set.all()
             data = {
                     'korean_name'         : product.korean_name,
                     'price'               : product.price,
