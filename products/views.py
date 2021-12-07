@@ -38,10 +38,13 @@ class ProductView(View):
                     'thumbnail_image_url' : product.thumbnail_image_url,
                     'vegan_or_not'        : product.vegan_or_not,
                     'category'            :{
-                            'name'     : product.categories.menu.name,
+                            'name'     : product.category.menu.name,
                             'category' : product.category.name
                         },
-                    'created_at'          : product.created_at
+                    'created_at'          : product.created_at,
+                    'like'                : 'TEMPORARY_LIKES',
+                    'order_quantity'      : product.order.quantity,
+                    
                 } for product in products]
                     
             return JsonResponse({'product_list': product_list}, status = 200)
