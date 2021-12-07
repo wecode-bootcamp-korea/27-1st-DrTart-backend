@@ -18,9 +18,9 @@ class ProductView(View):
             if all:
                 products = Product.objects.all().annotate(sum=Sum('orderitem__quantity')).order_by('-sum')
             if menu:
-                products = Product.objects.filter(category__menu__name=menu).annotate(sum=Sum('orderitem__quantity')).order_by('-sum')
+                products = Product.objects.select_related('category__menu').filter(category__menu__name=menu).annotate(sum=Sum('orderitem__quantity')).order_by('-sum')
             if category:
-                products = Product.objects.filter(category__name=category).annotate(sum=Sum('orderitem__quantity')).order_by('-sum')
+                products = Product.objects.select_related('category').filter(category__name=category).annotate(sum=Sum('orderitem__quantity')).order_by('-sum')
             
             for product in products:    
                 product_list.append({
@@ -47,3 +47,27 @@ class ProductView(View):
         except TypeError:
             return JsonResponse({'message' : 'TypeError'}, status=400)
         
+        
+class ProductDetailView(View):
+    def get(self,request, product_id):
+        try:
+            product = Product.objects.get(id=product_id)
+            images = product.image_set.filter(product__id=product_id)
+            data = {
+                    'korean_name'         : product.korean_name,
+                    'price'               : product.price,
+                    'thumbnail_image_url' : product.thumbnail_image_url,
+                    'vegan_or_not'        : product.vegan_or_not,
+                    'sugar_level'         : product.sugar_level,
+                    'category'            : product.category.name,
+                    'description'         : product.description, 
+                    'image_list'          : [{
+                        'id' : image.id,
+                        'url': image.url
+                    } for image in images]
+                }
+                
+            return JsonResponse({'product_list':data}, status = 201)
+                
+        except Product.DoesNotExist:
+            return JsonResponse({'message':'NOT_FOUND'}, status=401)
