@@ -16,7 +16,7 @@ class SignupView(View):
             
             email_validate(data['email'])
             password_validate(data['password'])
-
+            
             if User.objects.filter(email = data['email']).exists():
                 return ValidationError('DUPLICATED_EMAIL')
 
@@ -61,3 +61,19 @@ class SigninView(View):
         
         except KeyError:
             return JsonResponse({'message':'KEY_ERROR'}, status = 400)
+
+class IdCheckingView(View):
+    def post(self, request):
+        try:
+            data = json.loads(request.body)
+            email_validate(data['email'])
+
+            user = User.objects.filter(email = data['email'])
+            
+            if user.exists():
+                return JsonResponse({'message' : 'EMAIL_EXISTS'}, status=200)
+            else:
+                return JsonResponse({'message' : 'FINE_TO_USE'}, status=200)
+
+        except ValidationError as e:
+            return JsonResponse({'message' : e.message}, status = 401) 
