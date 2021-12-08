@@ -42,7 +42,7 @@ class ProductView(View):
                             'category' : product.category.name
                         },
                     'created_at'          : product.created_at,
-                    'like'                : product.orderitem_set.all()[0].quantity,
+                    'like'                : product.orderitem_set.all()[0].quantity,                                                                                                                                                                                                
                     'order_quantity'      : product.orderitem_set.all()[0].quantity,
                     
                 } for product in products]
@@ -58,4 +58,26 @@ class ProductView(View):
         except TypeError:
             return JsonResponse({'message' : 'TypeError'}, status=400)
         
-    
+class ProductDetailView(View):
+    def get(self, request, product_id):
+        try:
+            product = Product.objects.get(id=product_id)
+            images = product.image_set.all()
+            data = {
+                    'korean_name'         : product.korean_name,
+                    'price'               : product.price,
+                    'thumbnail_image_url' : product.thumbnail_image_url,
+                    'vegan_or_not'        : product.vegan_or_not,
+                    'sugar_level'         : product.sugar_level,
+                    'category'            : product.category.name,
+                    'description'         : product.description, 
+                    'image_list'          : [{
+                        'id' : image.id,
+                        'url': image.url
+                    } for image in images]
+                }
+                
+            return JsonResponse({'product_list':data}, status = 201)
+                
+        except Product.DoesNotExist:
+            return JsonResponse({'message':'NOT_FOUND'}, status=401)
