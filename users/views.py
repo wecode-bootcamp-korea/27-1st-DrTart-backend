@@ -18,7 +18,7 @@ class SignupView(View):
             password_validate(data['password'])
 
             if User.objects.filter(email = data['email']).exists():
-                return ValidationError('DUPLICATED_EMAIL')
+                return JsonResponse({'message':'DUPLICATED_USER'}, status=401)
 
             hashed_password = bcrypt.hashpw(data['password'].encode('utf-8'), bcrypt.gensalt()).decode('utf-8')
 
@@ -44,7 +44,7 @@ class SigninView(View):
             user = User.objects.get(email = data['email'])
 
             if not bcrypt.checkpw(data['password'].encode('utf-8'), user.password.encode('utf-8')):
-                return ValidationError('INVALID_USER')
+                return JsonResponse({'message':'INVALID_USER'}, status=401)
 
             token=jwt.encode({'user':user.id},SECRET_KEY,algorithm=ALGORITHM)
 
@@ -61,3 +61,19 @@ class SigninView(View):
         
         except KeyError:
             return JsonResponse({'message':'KEY_ERROR'}, status = 400)
+
+class IdCheckingView(View):
+    def post(self, request):
+        try:
+            data = json.loads(request.body)
+            email_validate(data['email'])
+
+            user = User.objects.filter(email = data['email'])
+            
+            if user.exists():
+                return JsonResponse({'message' : 'EMAIL_EXISTS'}, status=200)
+            else:
+                return JsonResponse({'message' : 'FINE_TO_USE'}, status=200)
+
+        except ValidationError as e:
+            return JsonResponse({'message' : e.message}, status = 401) 
