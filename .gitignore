@@ -364,3 +364,11 @@ zsdoc/data
 my_settings.py
 
 dbuploader.py
+db_uploader.py
+carts.csv 
+images.csv
+order_items.csv
+orders.csv
+products.csv
+reviews.csv
+users.csv
