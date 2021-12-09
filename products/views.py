@@ -42,7 +42,7 @@ class ProductView(View):
                             'category' : product.category.name
                         },
                     'created_at'          : product.created_at,
-                    'like'                : product.orderitem_set.all()[0].quantity,                                                                                                                                                                                                
+                    'like'                : product.like_set.count(),                                                                                                                                                                                                
                     'order_quantity'      : product.orderitem_set.all()[0].quantity,
                     
                 } for product in products]
@@ -70,7 +70,8 @@ class ProductDetailView(View):
                     'vegan_or_not'        : product.vegan_or_not,
                     'sugar_level'         : product.sugar_level,
                     'category'            : product.category.name,
-                    'description'         : product.description, 
+                    'description'         : product.description,
+                    'like'                : product.like_set.count(),  
                     'image_list'          : [{
                         'id' : image.id,
                         'url': image.url
