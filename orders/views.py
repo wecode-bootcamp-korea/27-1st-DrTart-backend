@@ -19,7 +19,7 @@ class CartView(View):
             user       = request.user
             product_id = data['product_id']
             quantity   = data['quantity']
-            print(44)
+
             if not Product.objects.filter(id=product_id).exists():
                 return JsonResponse({"message" : "PRODUCT_NOT_EXIST"}, status=400)
             
@@ -58,6 +58,31 @@ class CartView(View):
         } for cart in carts ]
 
         return JsonResponse({"cart_info" : result}, status=200)
+    
+    @authorization
+    def patch(self, request):
+        try:
+            data     = json.loads(request.body)
+            user     = request.body
+            cart_id  = data['cart_id']
+            quantity = data['quantity']
+
+            if not Cart.objects.filter(id=cart_id, user=user).exists():
+                return JsonResponse({"message" : "CART_NOT_EXIST"}, status=400)
+            
+            cart = Cart.objects.get(id=cart_id, user=user)
+
+            cart.quantity = quantity
+            cart.save()
+
+            if cart.quantity <= 0:
+                return JsonResponse({"message" : "QUANTITY_ERROR"}, status=400)
+
+            return JsonResponse({"message" : "SUCCESS"}, status=201)
+
+        except KeyError:
+            return JsonResponse({"message" : "KEY_ERROR"}, status=400)
+
 
     @authorization
     def delete(self, request):
