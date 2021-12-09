@@ -33,6 +33,10 @@ def AuthorizeProduct(func):
         
         token = request.headers.get('Authorization')
 
+        if not token:
+            request.user = None
+            return func(self, request, *args, **kwargs) 
+        
         payload      = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
 
         user         = User.objects.get(id=payload['user'])
