@@ -76,7 +76,7 @@ class ProductDetailView(View):
                     'sugar_level'         : product.sugar_level,
                     'category'            : product.category.name,
                     'description'         : product.description, 
-                    'like'                : Product.objects.filter(like__product_id=product_id).count(),
+                    'like_num'            : Product.objects.filter(like__product_id=product_id).count(),
                     'is_like_True'        : True if product.like_set.filter(user_id=request.user).exists() else False,
                     'image_list'          : [{
                         'id' : image.id,
