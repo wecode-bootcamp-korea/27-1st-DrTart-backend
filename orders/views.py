@@ -71,7 +71,6 @@ class CartView(View):
                 return JsonResponse({"message" : "CART_NOT_EXIST"}, status=400)
             
             cart = Cart.objects.get(id=cart_id, user=user)
-            cart.product_id = data['product_id']
 
             cart.quantity = quantity
             cart.save()
