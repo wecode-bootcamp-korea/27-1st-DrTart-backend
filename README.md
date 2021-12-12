@@ -1,10 +1,10 @@
 # >wecode 27th 2팀 'Dr.Tart' BE
  
-### 개발기간 
+## 개발기간 
 2021/11/29~2021/12/10
 - - -
 
-### 팀원
+## 팀원
  
 **_FE_** : 길도연 홍유진 김상훈
 
@@ -14,7 +14,7 @@
 
 - - -
  
-### 서비스 소개
+## 서비스 소개
  
 > - 일상에 지친 당신을 위한 디저트 솔루션 ! 닥터타르트는 당신에게 딱 맞는 디저트를 처방해드립니다.
 > - 글로벌 코스메틱 기업의 포털 사이트 [닥터자르트](www.drjart.co.kr/)를 클로닝한 프로젝트 Dr.Tart 입니다!
@@ -23,7 +23,7 @@
  
 - - -
 
-### 기술 스택
+## 기술 스택
  
 Front-End : JavaScript, React.js, sass, React-router-dom 
 
@@ -33,12 +33,15 @@ Back-End : Python, Django, MySQL, Miniconda
 
 - - -
  
-### 협업 툴
+## 협업 툴
 Common : Git, Github, Slack, Trello, Notion
 
 - - -
  
-### 구현 기능
+## 구현 기능
+
+
+
 #### User
 
 
