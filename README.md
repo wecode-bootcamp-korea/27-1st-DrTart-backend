@@ -2,7 +2,7 @@
  
 ## 개발기간 
 2021/11/29~2021/12/10
-- - -
+
 
 ## 팀원
  
@@ -12,7 +12,7 @@
 
 **_BE_** : 성주호 박정현 유민혁
 
-- - -
+
  
 ## 서비스 소개
  
@@ -21,7 +21,7 @@
 > - 짧은 프로젝트 기간동안 개발에 집중해야 하므로 디자인/기획 부분만 클론했습니다.
 > - 개발은 초기 세팅부터 전부 직접 구현했습니다.
  
-- - -
+
 
 ## 기술 스택
  
@@ -31,12 +31,12 @@ Front-End : JavaScript, React.js, sass, React-router-dom
  
 Back-End : Python, Django, MySQL, Miniconda 
 
-- - -
+
  
 ## 협업 툴
 Common : Git, Github, Slack, Trello, Notion
 
-- - -
+
  
 ## 구현 기능
 
