@@ -39,7 +39,7 @@ Common : Git, Github, Slack, Trello, Notion
 - - -
  
 ### 구현 기능
-##### **User**
+##### User
 
 
 
@@ -59,7 +59,7 @@ Common : Git, Github, Slack, Trello, Notion
  
  
  
-##### **Product**
+##### Product
 
 
 
@@ -79,7 +79,7 @@ Common : Git, Github, Slack, Trello, Notion
 
 
  
-##### **Order**
+##### Order
 
 
 
