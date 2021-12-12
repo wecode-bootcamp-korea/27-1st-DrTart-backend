@@ -7,19 +7,14 @@
 ## 팀원
  
 **_FE_** : 길도연 홍유진 김상훈
-
-
-
-**_BE_** : 성주호 박정현 유민혁
-
-
-
 **[Frontend Github](https://github.com/wecode-bootcamp-korea/27-1st-DrTart-frontend)**
 
 
-
-
+**_BE_** : 성주호 박정현 유민혁
 **[Backend Github](https://github.com/wecode-bootcamp-korea/27-1st-DrTart-backend)**
+
+
+
 
  
 ## 서비스 소개
