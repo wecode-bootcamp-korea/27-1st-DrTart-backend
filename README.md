@@ -7,11 +7,11 @@
 ## 팀원
  
 **_FE_** : 길도연 홍유진 김상훈
-**[Frontend Github](https://github.com/wecode-bootcamp-korea/27-1st-DrTart-frontend)**
+
+
 
 
 **_BE_** : 성주호 박정현 유민혁
-**[Backend Github](https://github.com/wecode-bootcamp-korea/27-1st-DrTart-backend)**
 
 
 
@@ -110,6 +110,17 @@ Common : Git, Github, Slack, Trello, Notion
 ### Demo
 [![Dr.Tart](http://img.youtube.com/vi/ofcgg-3-B28/0.jpg)](https://youtu.be/ofcgg-3-B28)
 
+
+
+### Resource
+
+
+1. 홈페이지 - 배포 전
+2. **[Frontend Github](https://github.com/wecode-bootcamp-korea/27-1st-DrTart-frontend)**
+3. **[Backend Github](https://github.com/wecode-bootcamp-korea/27-1st-DrTart-backend)**
+4. **[Trello](https://trello.com/b/dFkizfeW/%EB%8B%A5%ED%84%B0-%ED%83%80%EB%A5%B4%ED%8A%B8)**
+5. **[Notion](https://flint-vulture-659.notion.site/Dr-Tart-3b4e438bb0804ee3bfba830b111c2942)**
+6. **[백엔드 API 명세서](https://docs.google.com/spreadsheets/d/1n2_Wbt1LcQuaXMw_rSI5OrGETkpUJidcoyRMXQbgb3w/edit#gid=0)**
 
 
 - - -
